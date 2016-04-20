@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>[htdocs] Qerja - Typer</title>
+<title>Qerja - Typer</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 
 <link rel='stylesheet' href='./bootstrap.css' />
@@ -34,10 +34,11 @@ $(document).ready(function() {
 
 		// Toggle CSS3 animation
 		var div_word_wrapper = $('.word_wrapper'),
-        playState = '-webkit-animation-play-state';
-		div_word_wrapper.css(playState, function(i, v) {
+        playState = 'animation-play-state';        
+        div_word_wrapper.css(playState, function(i, v) {
             return v === 'paused' ? 'running' : 'paused';
         });
+
         
 		if($(this).text() == 'STOP') {
 			// Stop the Interval
@@ -87,7 +88,7 @@ $(document).ready(function() {
         
         // Toggle CSS3 animation
 		var div_word_wrapper = $('.word_wrapper'),
-        playState = '-webkit-animation-play-state';
+        playState = 'animation-play-state';
 		div_word_wrapper.css(playState, function(i, v) {
             return v === 'paused' ? 'running' : 'paused';
         });

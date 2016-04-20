@@ -1,7 +1,7 @@
 .paused { background-color:darkred; }
 
 div.word_wrapper {
-    /*transform: translateY(300px);*/
+    animation: mymove 30s infinite;
     animation-name: mymove;
     animation-timing-function: linear;
     animation-iteration-count: 1;   
@@ -10,6 +10,9 @@ div.word_wrapper {
     animation-play-state: running;
     animation-fill-mode: forwards;
 
+}
+.pause_anim {
+    animation-play-state: paused !important;
 }
 
 div#nav_control {
@@ -52,7 +55,8 @@ div#nav_control a.startStop_ctrl {
 }
 
 div#nav_control a.pauseResume_ctrl {
-    background-image: url(images/9_av_pause.png);
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIxNHB4IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMiAxNCIgd2lkdGg9IjEycHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48dGl0bGUvPjxkZXNjLz48ZGVmcy8+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSI+PGcgZmlsbD0iIzAwMDAwMCIgaWQ9Ikljb25zLUFWIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjE0LjAwMDAwMCwgLTQ2LjAwMDAwMCkiPjxnIGlkPSJwYXVzZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjE0LjAwMDAwMCwgNDYuMDAwMDAwKSI+PHBhdGggZD0iTTAsMTQgTDQsMTQgTDQsMCBMMCwwIEwwLDE0IEwwLDE0IFogTTgsMCBMOCwxNCBMMTIsMTQgTDEyLDAgTDgsMCBMOCwwIFoiIGlkPSJTaGFwZSIvPjwvZz48L2c+PC9nPjwvc3ZnPg==);
+    background-size: 80% 80%;
     border-left: 1px solid #BD2020;
     float: right;
     width: 4em;
@@ -69,6 +73,7 @@ div#nav_control a.scoreText {
 
 div#nav_control a.played {
     background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4IiB3aWR0aD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTS04MzgtMjIzMkg1NjJ2MzYwMEgtODM4eiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xNiAxMHYyOGwyMi0xNHoiLz48cGF0aCBkPSJNMCAwaDQ4djQ4SDB6IiBmaWxsPSJub25lIi8+PC9zdmc+);
+    background-size: 100% 100%;
 }
 
 div#nav_control h2 {
@@ -98,6 +103,14 @@ div#nav_control h2 {
     to {
         transform: translateY(768px);
     }
-    
+}
 
+@-webkit-keyframes mymove {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(768px);
+    } 
 }

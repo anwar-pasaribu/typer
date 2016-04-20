@@ -46,9 +46,10 @@ var WordView = Backbone.View.extend({
 	render:function() {
         
         // Manage how words fallin'
-		$(this.el).css({
-			left:this.model.get('x') + 'px',
-			'animation-duration': this.model.get('trans_speed')+'s'
+		$(this.el).css({  // top:this.model.get('y') + 'px', 'animation' : 'mymove ' + this.model.get('trans_speed') + 's infinite',  // For IE sake
+			left:this.model.get('x') + 'px',			
+			'animation-duration': this.model.get('trans_speed')+'s' // ,'transform' : 'translateY(768px)'
+			
         });
 
 		var highlight = this.model.get('highlight');
