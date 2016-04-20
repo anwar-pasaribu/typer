@@ -1,25 +1,110 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Qerja - Typer</title>
+<title>[htdocs] Qerja - Typer</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+<link rel='stylesheet' href='./bootstrap.css' />
+<link rel='stylesheet' href='./bootstrap-theme.css' />
+<link rel='stylesheet' href='./jquery-ui-1.10.4.css' />
+<link rel='stylesheet' href='./typer.css' />
+    
+</head>
+<body>    
 <script type='text/javascript' src='./jquery-1.11.1.js'></script>
 <script type='text/javascript' src='./jquery-ui-1.10.4.js'></script>
 <script type='text/javascript' src='./underscore.js'></script>
 <script type='text/javascript' src='./backbone.js'></script>
 <script type='text/javascript' src='./typer.js'></script>
-<link rel='stylesheet' href='./bootstrap.css' />
-<link rel='stylesheet' href='./bootstrap-theme.css' />
-<link rel='stylesheet' href='./jquery-ui-1.10.4.css' />
-<link rel='stylesheet' href='./typer.css' />
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-</head>
-<body>
+
 <script type="text/javascript">
 var company_names = ["Agung Podomoro Group","Citibank","Nokia Solution and Networks PT","Bhinneka.com","Tripatra","RCTI","TelkomSigma","Intrias Mandiri Sejati PT","Altermyth","Panin Bank","Gramedia Bookstore","Garuda Indonesia","Chevron Pacific","Darmex Agro","Bank SBI Indonesia PT","DBS Bank","UPS Cardig International PT","Tately NV","Cigna","Antam"];
 
 $(document).ready(function() {
 	var typer = new Typer();
 	typer.start();
+
+	// Stop the interval
+	$('div#nav_control a.startStop_ctrl').click(function() {
+        
+        var scores = null;  // Variabel scores val
+        var nav_control = $('div#nav_control'),
+            h1 = null,
+            h2 = null;
+
+		// Toggle CSS3 animation
+		var div_word_wrapper = $('.word_wrapper'),
+        playState = '-webkit-animation-play-state';
+		div_word_wrapper.css(playState, function(i, v) {
+            return v === 'paused' ? 'running' : 'paused';
+        });
+        
+		if($(this).text() == 'STOP') {
+			// Stop the Interval
+			typer.stop();
+            // Change button lable
+			$(this).text("START").addClass('played');
+            
+            // Get score
+            scores = typer.getScore();
+            
+            // HI Score is current score if high score is zero or
+            // current score is bigger
+            var h2_text = "";
+            if(scores[1] == 0 || scores[0] > scores[1]) {
+                h2_text = "" + scores[0];
+            } else {
+                h2_text = "" + scores[1];
+            }
+            
+            // Show score
+            nav_control.css({'height': '100%'});
+            h2 = $('<h2>').text('HI ' + h2_text);  // High score
+            h1 = $('<h1>').text('You - ' + scores[0]);  // Current score
+            nav_control.append(h2).append(h1);
+		} else {
+			typer.start();
+			$(this).text("STOP").removeClass('played');
+            
+            // Get score
+            scores = typer.getScore();
+            
+            // Set high score if the score_current is bigger (on typer.js)
+            typer.setScore(scores);
+            
+            // Close score
+            nav_control.find('h1').remove();
+            nav_control.find('h2').remove();
+            nav_control.css({'height': '4em'});
+		}
+
+		console.log("Start and Stop button.");
+	});
+    
+    
+    // Pause / Resume button
+    $('div#nav_control a.pauseResume_ctrl').click(function() {
+        
+        // Toggle CSS3 animation
+		var div_word_wrapper = $('.word_wrapper'),
+        playState = '-webkit-animation-play-state';
+		div_word_wrapper.css(playState, function(i, v) {
+            return v === 'paused' ? 'running' : 'paused';
+        });
+        
+        if($(this).text() == 'PAUSE') {
+			// Stop the Interval
+			typer.pause();
+            // Change button lable
+			$(this).text("RESUME").addClass('played');
+            $('input.form-control').attr({'disabled': 'true'});
+		} else {
+			typer.start();
+			$(this).text("PAUSE").removeClass('played');
+            $('input.form-control').removeAttr('disabled');
+		}
+        
+    });
 });
 </script>
 </body>

@@ -1,3 +1,103 @@
-body {
-	background-color:#eee;
+.paused { background-color:darkred; }
+
+div.word_wrapper {
+    /*transform: translateY(300px);*/
+    animation-name: mymove;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;   
+    animation-direction: normal;
+    animation-delay: 0;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+
+}
+
+div#nav_control {
+    height: 4em;
+    background-color: #fff;
+    box-shadow: 1px 2px 3px #999;
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    vertical-align: middle;
+    width: 100%;
+    z-index: 1005;
+}
+
+div#nav_control a {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain; 
+    color: RGBA(0,0,0,0);
+    display: inline-block;
+    max-height: 4em;
+    line-height: 4em;
+    position: relative;
+    min-width: 4em;
+}
+
+
+div#nav_control a.brandLogo_btn {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAM1BMVEX///+9ICC9ICC9ICC9ICC9ICC9ICC9ICC9ICC9ICC9ICC9ICC9ICC9ICC9ICC9ICC9ICBqE7lcAAAAEHRSTlMAECAwQFBgcICQoLDA0ODwVOCoyAAAAztJREFUeAHtm8tyxCgMRSXeBoz0/1872czCJI2Nr5uqqfHZgxQ9LqhN6OXl5b+F8ynl+kNK0TEthf2265FWolllPRT9m32FDzbriOzoq7iqZ9QvumCqXqEY+gq86VUS0/O4pj1St5TSVkV7mqOnSdrRNkv/YmPTjkSPwrU3H87KszI9h21d7CP9JnSZEPuc/W7r3VwKk7gv2c/0iV6kwmL7RBHwALA/aBZLKNzG9nvy05VYu/pjfAGiP8J0BncpK4Tg9Ii7scY/WAAbXWGbiRqw1YIkmJtdHUaJAzqg0lXaeCFegUAIgAA0orUhcPMVgIdgJKo0AZ8eIOewIntkXAsiJGgeP5d3IAM/wGJkFNsh6xE4A5HmgPuggFcbRucEQUMIapHVfj0YQgFTmOFZzmDLE83isSqsYBMQOWyHivmPt4HCDhCmZNphYQcq5gD97xx4HXgdEEzJcQeeV8LlDjjMgQTfah12FgT4OI7YDha/kIBJlIevZGrA9ehsrWgKDeEhhH+ewS9EwGy4gV3o0TbawRQSLKUMDaeF5slQEbS/VwNalCEhY/xXMkFKoNAdHFDH+ycdBtQw31eRRvcwcjeP20OfjtJdMRM8AH+kUvjmbSKAn8zmQ9CAAIz+FjG3AuAIIc+fqdzGGoCUQZwvXWHC4H0ynGasX6AHYicVfCNa7EECL7PnHgQa4fAPt6e9sI3V+zxcsB7sZhArwP4Qe0gD4/bnSdJlAbQ/j8ldcQ/t7/abb9niIEnjZ0R4FORDd3lB9GcC9inyyUs38YQDvHQrTGsxh9tr8wQDPPKUxLQSDscJIPNK4y4drctmVka+6JEWmRYStCPSUoxohyRaSdLftEAQwOgOuBBribADgAvx7sGRVAEXuj9EwFdePS3x5BgNt2GPZEOXcMD0aquOqJ4ukKHhwWxNh5kwdIKFn4H7Mg5D4CuDryUAjruOyP503Gn4hUDGFRl4+O8SiXBC0SF7cp0TnKSfcjBMbDpmL8k7Qz+wi+Ubx6jLovPU5y9oU4ihIbg4jBFLz+Mzbh+Ex12BD7C4D0vu8ByGbdEcLcDGIh+OCVqGDakeWkNKNLQc41xIKUXnmF5eXj7xD4u02Do6STkOAAAAAElFTkSuQmCC);
+    background-size: 80% 80%;
+    float: left;
+    left: 1em;
+    height: 4em;
+}
+
+div#nav_control a.startStop_ctrl {
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iMzJweCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzIgMzI7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxnIGlkPSJfeDM0X19hdWRpb19zdG9wIj48cGF0aCBkPSJNMjYuMTY3LDQuODMzSDUuODMzYy0wLjU1MiwwLTEsMC40NDgtMSwxdjIwLjMzNGMwLDAuNTUzLDAuNDQ4LDEsMSwxaDIwLjMzNGMwLjU1MywwLDEtMC40NDcsMS0xVjUuODMzICAgQzI3LjE2Nyw1LjI4MSwyNi43Miw0LjgzMywyNi4xNjcsNC44MzN6Ii8+PC9nPjwvc3ZnPg==);
+    float: right;
+    margin-right: 4em;
+}
+
+div#nav_control a.pauseResume_ctrl {
+    background-image: url(images/9_av_pause.png);
+    border-left: 1px solid #BD2020;
+    float: right;
+    width: 4em;
+}
+
+div#nav_control a.scoreText {
+    color: #BD2020;
+    width: auto;
+    font-size: 14pt;
+    font-weight: bolder;
+    line-height: 3em;
+    height: 3em;
+}
+
+div#nav_control a.played {
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4IiB3aWR0aD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTS04MzgtMjIzMkg1NjJ2MzYwMEgtODM4eiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xNiAxMHYyOGwyMi0xNHoiLz48cGF0aCBkPSJNMCAwaDQ4djQ4SDB6IiBmaWxsPSJub25lIi8+PC9zdmc+);
+}
+
+div#nav_control h2 {
+    margin-top: 10%;
+}
+
+/* Chrome, Safari, Opera */
+@keyframes startAnim {
+    0% {
+        transform: scale(3.5);
+    }
+
+    50% {
+        transform: scale(3);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes mymove {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(768px);
+    }
+    
+
 }
