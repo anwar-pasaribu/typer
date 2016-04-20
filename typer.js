@@ -10,12 +10,12 @@ var Words = Backbone.Collection.extend({
 
 var WordView = Backbone.View.extend({
 	initialize: function() {
-		$(this.el).css({position:'absolute'}).attr({'id': this.model.get('x')+ "-" + this.model.get('string')});
+		$(this.el).css({position:'absolute'});
 		$(this.el).addClass('word_wrapper');
 
 		var string = this.model.get('string');
 		var letter_width = 25;
-		var word_width = string.length * letter_width;  // Panjang div container kata-kata
+		var word_width = string.length * letter_width;
 
 		if(this.model.get('x') + word_width > $(window).width()) {
 			this.model.set({x:$(window).width() - word_width});
@@ -100,11 +100,7 @@ var TyperView = Backbone.View.extend({
 					var word = words.at(i);
 					var typed_string = $(this).val();
 					var string = word.get('string'); // Company name 
-
-					// Find certain string based on typed string.
 					if(string.toLowerCase().indexOf(typed_string.toLowerCase()) == 0) {
-
-						console.log("Equal ["+word.get('string')+"], for: " + typed_string.length + " chars.");
 
 						// Highlight chars
 						word.set({highlight:typed_string.length});
@@ -120,12 +116,10 @@ var TyperView = Backbone.View.extend({
                             // Update score view
                             $('div#nav_control a.scoreText').text("Your score - " + current_score);
                             
-                            console.log("String: " + string + " is typed.");
 
 						}
 					// HAndle miss typed char and substract score by three
 					} else if(word.get('highlight') >= 3) {
-                        console.log("["+word.get('string')+"] Firstly it's good. Now is miss typed.");
                         word.set({highlight:0});
 
                         // Substract score by 3
